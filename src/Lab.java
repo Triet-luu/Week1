@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Lab {
     private static Scanner scanner = new Scanner(System.in);
+    private static double CONVERSION = 1.609;
     public static void main(String[] args) {
         System.out.print("Choose an option (1-9): ");
         String receiver = scanner.next();
@@ -25,13 +26,13 @@ public class Lab {
                 Exercise6();
                 break;
             case "7":
-                System.out.println("7");
+                Exercise7();
                 break;
             case "8":
-                System.out.println("8");
+                Exercise8();
                 break;
             case "9":
-                System.out.println("9");
+                Exercise9();
                 break;
             default:
                 System.out.println("Program exits.");
@@ -118,6 +119,7 @@ public class Lab {
     }
 
     private static void Exercise5() {
+        System.out.print("Input an integer: ");
         int number = scanner.nextInt();
 
         if (number % 5 == 0 && number % 6 == 0) {
@@ -152,6 +154,53 @@ public class Lab {
     }
 
     private static void Exercise7() {
+        System.out.println("Miles\tKilometers\t|\tKilometers\tMiles");
+        for (int miles = 1; miles < 11; miles++) {
+            System.out.printf("%2d\t\t%5.2f\t\t|\t\t%d\t\t%.2f%n",
+                    miles, miles * CONVERSION, 20 + (miles - 1) * 5, (20 + (miles - 1) * 5) / CONVERSION);
+        }
+    }
+
+    private static void Exercise8() {
+        int count = 0;
+        for (int num = 100; num <= 200; num++) {
+            if (num % 5 == 0 || num % 6 == 0) {
+                System.out.print(num + "\t");
+                count++;
+                while (count == 10) {
+                    System.out.print("\n");
+                    count = 0;
+                }
+            }
+        }
+    }
+
+    private static void Exercise9() {
+        int number;
+        int digital;
+        do {
+            System.out.print("Enter the number of lines: ");
+            number = scanner.nextInt();
+        } while (number < 0);
+
+        for (int row = 1; row <= number; row++) {
+
+            for (int col = 1; col <= number - row; col++) {
+                System.out.print(" \t");
+            }
+
+            // Input numbers to the rows and columns created in descending order
+            for (digital = row; (digital - 1) >= 0; digital--) {
+                System.out.print(digital + "\t");
+            }
+
+            // Input numbers to the rows and columns created in ascending order
+            for (int n = (digital + 1); ((n != row)) && (n >= 1); n++ ) {
+                System.out.print((n + 1) + "\t");
+            }
+            System.out.println();
+        }
 
     }
 }
+
